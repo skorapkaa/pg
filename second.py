@@ -1,44 +1,102 @@
-def cislo_text(cislo):
-    if cislo == 0:
-        return "nula"
-    
-    if cislo >= 100:
-        return "sto" + ("" if cislo == 100 else " " + cislo_text(cislo % 100))
-    
-    if 10 < cislo < 20:
-        teen_numbers = {
-            11: "jedenáct", 12: "dvanáct", 13: "třináct",
-            14: "čtrnáct", 15: "patnáct", 16: "šestnáct",
-            17: "sedmnáct", 18: "osmnáct", 19: "devatenáct"
-        }
-        return teen_numbers[cislo]
+def dej_cislo(cislo):
+    cislo = int(cislo)
 
-    prvni_index = ""
-    druhy_index = ""
+    if cislo == 100:
+        return "sto"
 
-    if cislo >= 20:
-        tens = {
-            2: "dvacet", 3: "třicet", 4: "čtyřicet", 
-            5: "padesát", 6: "šedesát", 7: "sedmdesát", 
-            8: "osmdesát", 9: "devadesát"
-        }
-        prvni_index = tens[cislo // 10]
+    if 11 <= cislo <= 19:
+        if cislo == 11:
+            return "jedenáct"
+        elif cislo == 12:
+            return "dvanáct"
+        elif cislo == 13:
+            return "třináct"
+        elif cislo == 14:
+            return "čtrnáct"
+        elif cislo == 15:
+            return "patnáct"
+        elif cislo == 16:
+            return "šestnáct"
+        elif cislo == 17:
+            return "sedmnáct"
+        elif cislo == 18:
+            return "osmnáct"
+        elif cislo == 19:
+            return "devatenáct"
 
-    if cislo % 10 != 0:
-        jednotky = {
-            1: " jedna", 2: " dva", 3: " tři", 
-            4: " čtyři", 5: " pět", 6: " šest", 
-            7: " sedm", 8: " osm", 9: " devět"
-        }
-        druhy_index = jednotky[cislo % 10]
-    
-    return prvni_index + druhy_index
+    desitky = ""
+    if 20 <= cislo < 30:
+        desitky = "dvacet"
+    elif 30 <= cislo < 40:
+        desitky = "třicet"
+    elif 40 <= cislo < 50:
+        desitky = "čtyřicet"
+    elif 50 <= cislo < 60:
+        desitky = "padesát"
+    elif 60 <= cislo < 70:
+        desitky = "šedesát"
+    elif 70 <= cislo < 80:
+        desitky = "sedmdesát"
+    elif 80 <= cislo < 90:
+        desitky = "osmdesát"
+    elif 90 <= cislo < 100:
+        desitky = "devadesát"
+
+
+    jednotky = cislo % 10
+    if jednotky == 1:
+        jednotky_text = "jedna"
+    elif jednotky == 2:
+        jednotky_text = "dva"
+    elif jednotky == 3:
+        jednotky_text = "tři"
+    elif jednotky == 4:
+        jednotky_text = "čtyři"
+    elif jednotky == 5:
+        jednotky_text = "pět"
+    elif jednotky == 6:
+        jednotky_text = "šest"
+    elif jednotky == 7:
+        jednotky_text = "sedm"
+    elif jednotky == 8:
+        jednotky_text = "osm"
+    elif jednotky == 9:
+        jednotky_text = "devět"
+    else:
+        jednotky_text = ""
+
+
+    if cislo == 1:
+        return "jedna"
+    elif cislo == 2:
+        return "dva"
+    elif cislo == 3:
+        return "tři"
+    elif cislo == 4:
+        return "čtyři"
+    elif cislo == 5:
+        return "pět"
+    elif cislo == 6:
+        return "šest"
+    elif cislo == 7:
+        return "sedm"
+    elif cislo == 8:
+        return "osm"
+    elif cislo == 9:
+        return "devět"
+    elif cislo == 10:
+        return "deset"
+
+    if desitky and jednotky_text:
+        return desitky + " " + jednotky_text
+    elif desitky:
+        return desitky
+    elif jednotky_text:
+        return jednotky_text
+
+    return "Neplatné číslo"
 
 if __name__ == "__main__":
-    cislo = int(input("Zadej číslo: "))
-    while cislo > 100 or cislo < 0:
-        print("Číslo musí být mezi 0-100")
-        cislo = int(input("Zadej číslo: "))
-
-    text = cislo_text(cislo)
+    cislo = input("Zadej číslo od 1 do 100: ")
+    text = dej_cislo(cislo)
     print(text)
