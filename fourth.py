@@ -62,6 +62,7 @@ def je_tah_mozny(figurka, cilova_pozice, obsazene_pozice):
         return False
 
     return False
+    
 
 
 if __name__ == "__main__":
